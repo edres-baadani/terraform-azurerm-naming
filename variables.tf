@@ -1,3 +1,5 @@
+# variables.tf
+
 variable "prefix" {
   type        = list(string)
   default     = []
@@ -26,4 +28,18 @@ variable "unique-include-numbers" {
   description = "If you want to include numbers in the unique generation"
   type        = bool
   default     = true
+}
+
+// --- New Variables for Environments and Locations ---
+
+variable "environment" {
+  description = "The environment for the resource (e.g., 'dev', 'prod'). This is for documentation and for use in name components."
+  type        = string
+  default     = ""
+}
+
+variable "location" {
+  description = "The location for the resource. Can be the full name ('eastus'), short name ('eus'), or display name ('East US'). The module will look up the correct value."
+  type        = string
+  default     = ""
 }

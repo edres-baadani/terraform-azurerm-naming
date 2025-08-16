@@ -1,8 +1,9 @@
 terraform {
+  required_version = ">= 1.5.0"
   required_providers {
     random = {
       source  = "hashicorp/random"
-      version = ">= 3.3.2"
+      version = "3.7.2" # ">= 3.3.2"
     }
   }
 }
@@ -21,19 +22,26 @@ resource "random_string" "first_letter" {
   numeric = false
 }
 
-
-
 locals {
   // adding a first letter to guarantee that you always start with a letter
   random_safe_generation = join("", [random_string.first_letter.result, random_string.main.result])
   random                 = substr(coalesce(var.unique-seed, local.random_safe_generation), 0, var.unique-length)
   prefix                 = join("-", var.prefix)
   prefix_safe            = lower(join("", var.prefix))
-  suffix                 = join("-", var.suffix)
-  suffix_unique          = join("-", concat(var.suffix, [local.random]))
-  suffix_safe            = lower(join("", var.suffix))
-  suffix_unique_safe     = lower(join("", concat(var.suffix, [local.random])))
-  // Names based in the recomendations of
+
+  // Add the environment variable to the prefix if it's not empty
+  suffix_items       = compact(concat(var.suffix, [var.environment]))
+  suffix             = join("-", local.suffix_items)
+  suffix_unique      = join("-", concat(local.suffix_items, [local.random]))
+  suffix_safe        = lower(join("", local.suffix_items))
+  suffix_unique_safe = lower(join("", concat(local.suffix_items, [local.random])))
+
+  //suffix               = join("-", var.suffix)
+  //suffix_unique        = join("-", concat(var.suffix, [local.random]))
+  //suffix_safe          = lower(join("", var.suffix))
+  //suffix_unique_safe   = lower(join("", concat(var.suffix, [local.random])))
+
+  // Naming recommendations from Azure Cloud Adoption Framework
   // https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/naming-and-tagging
   az = {
     analysis_services_server = {
@@ -3483,4 +3491,472 @@ locals {
       valid_name_unique = length(regexall(local.az.windows_virtual_machine_scale_set.regex, local.az.windows_virtual_machine_scale_set.name_unique)) > 0
     }
   }
-}
+
+  // Naming components from resourceenvironments.json
+  environments = {
+    dev = {
+      name       = "Development"
+      short_name = "dev"
+    }
+    prd = {
+      name       = "Production"
+      short_name = "prd"
+    }
+    sbx = {
+      name       = "Sandbox"
+      short_name = "sbx"
+    }
+    shd = {
+      name       = "Shared"
+      short_name = "shd"
+    }
+    stg = {
+      name       = "Staging"
+      short_name = "stg"
+    }
+    tst = {
+      name       = "Test"
+      short_name = "tst"
+    }
+    uat = {
+      name       = "UAT"
+      short_name = "uat"
+    }
+  }
+
+  // Raw locations data keyed by name
+  locations_by_name = {
+    australiacentral = {
+      name            = "australiacentral"
+      displayName     = "Australia Central"
+      short_name      = "ac"
+      region_category = "Other"
+      paired_regions  = "australiacentral2"
+    }
+    australiacentral2 = {
+      name            = "australiacentral2"
+      displayName     = "Australia Central 2"
+      short_name      = "ac2"
+      region_category = "Other"
+      paired_regions  = "australiacentral"
+    }
+    australiaeast = {
+      name            = "australiaeast"
+      displayName     = "Australia East"
+      short_name      = "aue"
+      region_category = "Recommended"
+      paired_regions  = "australiasoutheast"
+    }
+    australiasoutheast = {
+      name            = "australiasoutheast"
+      displayName     = "Australia Southeast"
+      short_name      = "as"
+      region_category = "Other"
+      paired_regions  = "australiaeast"
+    }
+    austriaeast = {
+      name            = "austriaeast"
+      displayName     = "Austria East"
+      short_name      = "ae"
+      region_category = "Recommended"
+      paired_regions  = ""
+    }
+    brazilsouth = {
+      name            = "brazilsouth"
+      displayName     = "Brazil South"
+      short_name      = "bs"
+      region_category = "Recommended"
+      paired_regions  = "southcentralus"
+    }
+    brazilsoutheast = {
+      name            = "brazilsoutheast"
+      displayName     = "Brazil Southeast"
+      short_name      = "bse"
+      region_category = "Other"
+      paired_regions  = "brazilsouth"
+    }
+    brazilus = {
+      name            = "brazilus"
+      displayName     = "Brazil US"
+      short_name      = "bu"
+      region_category = "Other"
+      paired_regions  = "brazilsoutheast"
+    }
+    canadacentral = {
+      name            = "canadacentral"
+      displayName     = "Canada Central"
+      short_name      = "cc"
+      region_category = "Recommended"
+      paired_regions  = "canadaeast"
+    }
+    canadaeast = {
+      name            = "canadaeast"
+      displayName     = "Canada East"
+      short_name      = "ce"
+      region_category = "Other"
+      paired_regions  = "canadacentral"
+    }
+    centralindia = {
+      name            = "centralindia"
+      displayName     = "Central India"
+      short_name      = "ci"
+      region_category = "Recommended"
+      paired_regions  = "southindia"
+    }
+    centralus = {
+      name            = "centralus"
+      displayName     = "Central US"
+      short_name      = "cu"
+      region_category = "Recommended"
+      paired_regions  = "eastus2"
+    }
+    centraluseuap = {
+      name            = "centraluseuap"
+      displayName     = "Central US EUAP"
+      short_name      = "cue"
+      region_category = "Other"
+      paired_regions  = "eastus2euap"
+    }
+    chilecentral = {
+      name            = "chilecentral"
+      displayName     = "Chile Central"
+      short_name      = "clc"
+      region_category = "Recommended"
+      paired_regions  = ""
+    }
+    eastasia = {
+      name            = "eastasia"
+      displayName     = "East Asia"
+      short_name      = "ea"
+      region_category = "Recommended"
+      paired_regions  = "southeastasia"
+    }
+    eastus = {
+      name            = "eastus"
+      displayName     = "East US"
+      short_name      = "eu"
+      region_category = "Recommended"
+      paired_regions  = "westus"
+    }
+    eastus2 = {
+      name            = "eastus2"
+      displayName     = "East US 2"
+      short_name      = "eu2"
+      region_category = "Other"
+      paired_regions  = "centralus"
+    }
+    eastus2euap = {
+      name            = "eastus2euap"
+      displayName     = "East US 2 EUAP"
+      short_name      = "eu2e"
+      region_category = "Recommended"
+      paired_regions  = "centraluseuap"
+    }
+    eastusstg = {
+      name            = "eastusstg"
+      displayName     = "East US STG"
+      short_name      = "eus"
+      region_category = "Other"
+      paired_regions  = "southcentralusstg"
+    }
+    francecentral = {
+      name            = "francecentral"
+      displayName     = "France Central"
+      short_name      = "fc"
+      region_category = "Recommended"
+      paired_regions  = "francesouth"
+    }
+    francesouth = {
+      name            = "francesouth"
+      displayName     = "France South"
+      short_name      = "fs"
+      region_category = "Other"
+      paired_regions  = "francecentral"
+    }
+    germanynorth = {
+      name            = "germanynorth"
+      displayName     = "Germany North"
+      short_name      = "gn"
+      region_category = "Other"
+      paired_regions  = "germanywestcentral"
+    }
+    germanywestcentral = {
+      name            = "germanywestcentral"
+      displayName     = "Germany West Central"
+      short_name      = "gwc"
+      region_category = "Recommended"
+      paired_regions  = "germanynorth"
+    }
+    indonesiacentral = {
+      name            = "indonesiacentral"
+      displayName     = "Indonesia Central"
+      short_name      = "ic"
+      region_category = "Recommended"
+      paired_regions  = ""
+    }
+    italynorth = {
+      name            = "italynorth"
+      displayName     = "Italy North"
+      short_name      = "in"
+      region_category = "Recommended"
+      paired_regions  = ""
+    }
+    japaneast = {
+      name            = "japaneast"
+      displayName     = "Japan East"
+      short_name      = "je"
+      region_category = "Recommended"
+      paired_regions  = "japanwest"
+    }
+    japanwest = {
+      name            = "japanwest"
+      displayName     = "Japan West"
+      short_name      = "jw"
+      region_category = "Recommended"
+      paired_regions  = "japaneast"
+    }
+    jioindiacentral = {
+      name            = "jioindiacentral"
+      displayName     = "Jio India Central"
+      short_name      = "jic"
+      region_category = "Other"
+      paired_regions  = "jioindiawest"
+    }
+    jioindiawest = {
+      name            = "jioindiawest"
+      displayName     = "Jio India West"
+      short_name      = "jiw"
+      region_category = "Other"
+      paired_regions  = "jioindiacentral"
+    }
+    koreacentral = {
+      name            = "koreacentral"
+      displayName     = "Korea Central"
+      short_name      = "kc"
+      region_category = "Recommended"
+      paired_regions  = "koreasouth"
+    }
+    koreasouth = {
+      name            = "koreasouth"
+      displayName     = "Korea South"
+      short_name      = "ks"
+      region_category = "Other"
+      paired_regions  = "koreacentral"
+    }
+    malaysiawest = {
+      name            = "malaysiawest"
+      displayName     = "Malaysia West"
+      short_name      = "mw"
+      region_category = "Recommended"
+      paired_regions  = ""
+    }
+    mexicocentral = {
+      name            = "mexicocentral"
+      displayName     = "Mexico Central"
+      short_name      = "mc"
+      region_category = "Recommended"
+      paired_regions  = ""
+    }
+    newzealandnorth = {
+      name            = "newzealandnorth"
+      displayName     = "New Zealand North"
+      short_name      = "nzn"
+      region_category = "Recommended"
+      paired_regions  = ""
+    }
+    northcentralus = {
+      name            = "northcentralus"
+      displayName     = "North Central US"
+      short_name      = "ncu"
+      region_category = "Other"
+      paired_regions  = "southcentralus"
+    }
+    northeurope = {
+      name            = "northeurope"
+      displayName     = "North Europe"
+      short_name      = "ne"
+      region_category = "Recommended"
+      paired_regions  = "westeurope"
+    }
+    norwayeast = {
+      name            = "norwayeast"
+      displayName     = "Norway East"
+      short_name      = "nwe"
+      region_category = "Recommended"
+      paired_regions  = "norwaywest"
+    }
+    norwaywest = {
+      name            = "norwaywest"
+      displayName     = "Norway West"
+      short_name      = "nw"
+      region_category = "Other"
+      paired_regions  = "norwayeast"
+    }
+    polandcentral = {
+      name            = "polandcentral"
+      displayName     = "Poland Central"
+      short_name      = "pc"
+      region_category = "Recommended"
+      paired_regions  = ""
+    }
+    qatarcentral = {
+      name            = "qatarcentral"
+      displayName     = "Qatar Central"
+      short_name      = "qc"
+      region_category = "Recommended"
+      paired_regions  = ""
+    }
+    southafricanorth = {
+      name            = "southafricanorth"
+      displayName     = "South Africa North"
+      short_name      = "san"
+      region_category = "Recommended"
+      paired_regions  = "southafricawest"
+    }
+    southafricawest = {
+      name            = "southafricawest"
+      displayName     = "South Africa West"
+      short_name      = "saw"
+      region_category = "Other"
+      paired_regions  = "southafricanorth"
+    }
+    southcentralus = {
+      name            = "southcentralus"
+      displayName     = "South Central US"
+      short_name      = "scu"
+      region_category = "Other"
+      paired_regions  = "northcentralus"
+    }
+    southcentralusstg = {
+      name            = "southcentralusstg"
+      displayName     = "South Central US STG"
+      short_name      = "scus"
+      region_category = "Other"
+      paired_regions  = "eastusstg"
+    }
+    southeastasia = {
+      name            = "southeastasia"
+      displayName     = "Southeast Asia"
+      short_name      = "sa"
+      region_category = "Recommended"
+      paired_regions  = "eastasia"
+    }
+    southindia = {
+      name            = "southindia"
+      displayName     = "South India"
+      short_name      = "si"
+      region_category = "Other"
+      paired_regions  = "centralindia"
+    }
+    spaincentral = {
+      name            = "spaincentral"
+      displayName     = "Spain Central"
+      short_name      = "sc"
+      region_category = "Recommended"
+      paired_regions  = ""
+    }
+    swedencentral = {
+      name            = "swedencentral"
+      displayName     = "Sweden Central"
+      short_name      = "sdc"
+      region_category = "Recommended"
+      paired_regions  = "swedensouth"
+    }
+    switzerlandnorth = {
+      name            = "switzerlandnorth"
+      displayName     = "Switzerland North"
+      short_name      = "sn"
+      region_category = "Recommended"
+      paired_regions  = "switzerlandwest"
+    }
+    switzerlandwest = {
+      name            = "switzerlandwest"
+      displayName     = "Switzerland West"
+      short_name      = "sw"
+      region_category = "Other"
+      paired_regions  = "switzerlandnorth"
+    }
+    uaecentral = {
+      name            = "uaecentral"
+      displayName     = "UAE Central"
+      short_name      = "uc"
+      region_category = "Other"
+      paired_regions  = "uaenorth"
+    }
+    uaenorth = {
+      name            = "uaenorth"
+      displayName     = "UAE North"
+      short_name      = "un"
+      region_category = "Recommended"
+      paired_regions  = "uaecentral"
+    }
+    uksouth = {
+      name            = "uksouth"
+      displayName     = "UK South"
+      short_name      = "us"
+      region_category = "Recommended"
+      paired_regions  = "ukwest"
+    }
+    ukwest = {
+      name            = "ukwest"
+      displayName     = "UK West"
+      short_name      = "uw"
+      region_category = "Other"
+      paired_regions  = "uksouth"
+    }
+    westcentralus = {
+      name            = "westcentralus"
+      displayName     = "West Central US"
+      short_name      = "wcu"
+      region_category = "Other"
+      paired_regions  = "westus2"
+    }
+    westeurope = {
+      name            = "westeurope"
+      displayName     = "West Europe"
+      short_name      = "we"
+      region_category = "Recommended"
+      paired_regions  = "northeurope"
+    }
+    westindia = {
+      name            = "westindia"
+      displayName     = "West India"
+      short_name      = "wi"
+      region_category = "Other"
+      paired_regions  = "southindia"
+    }
+    westus = {
+      name            = "westus"
+      displayName     = "West US"
+      short_name      = "wu"
+      region_category = "Other"
+      paired_regions  = "eastus"
+    }
+    westus2 = {
+      name            = "westus2"
+      displayName     = "West US 2"
+      short_name      = "wu2"
+      region_category = "Recommended"
+      paired_regions  = "westcentralus"
+    }
+    westus3 = {
+      name            = "westus3"
+      displayName     = "West US 3"
+      short_name      = "wu3"
+      region_category = "Other"
+      paired_regions  = "eastus"
+    }
+  }
+
+  // Lookups keyed by short name and display name
+  locations_by_short_name = {
+    for location in local.locations_by_name : location.short_name => location
+  }
+
+  // A combined lookup value for user input
+  location = try(coalesce(
+    lookup(local.locations_by_short_name, var.location, null),
+    lookup(local.locations_by_name, var.location, null)
+  ), null)
+
+} // THIS IS THE MISSING BRACE

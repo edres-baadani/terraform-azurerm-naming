@@ -6,6 +6,18 @@ output "unique-seed" {
 output "validation" {
   value = local.validation
 }
+
+output "environments" {
+  value = local.environments
+}
+
+output "locations" {
+  value = local.locations_by_name
+}
+output "location_details" {
+  value       = local.location
+  description = "The details of the looked-up location based on the provided input."
+}
 output "analysis_services_server" {
   value       = local.az.analysis_services_server
   description = "Analysis Services Server"

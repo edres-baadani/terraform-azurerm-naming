@@ -1,6 +1,6 @@
 {{ define "output" }}
 output "{{ .Name }}" {
-  value       = local.az.{{ .Name }}
+  value     = local.az.{{ .Name }}
   description = "{{ replace .Name "_" " " | title }}"
 }
 {{ end }}
@@ -14,7 +14,18 @@ output "validation" {
   value = local.validation
 }
 
-{{- range . }}
+output "environments" {
+  value = local.environments
+}
+
+output "locations" {
+  value = local.locations_by_name
+}
+output "location_details" {
+  value = local.location
+  description = "The details of the looked-up location based on the provided input."
+}
+{{- range .Resources }}
     {{- template  "output" .}}
 {{- end }}
 
