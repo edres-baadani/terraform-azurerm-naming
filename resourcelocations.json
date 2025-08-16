@@ -1,0 +1,602 @@
+[
+  {
+    "name": "eastus",
+    "displayName": "East US",
+    "id": "eastus",
+    "regionalDisplayName": "(US) East US",
+    "type": "Region",
+    "shortName": "eu",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": "westus"
+  },
+  {
+    "name": "westus2",
+    "displayName": "West US 2",
+    "id": "westus2",
+    "regionalDisplayName": "(US) West US 2",
+    "type": "Region",
+    "shortName": "wu2",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": "westcentralus"
+  },
+  {
+    "name": "australiaeast",
+    "displayName": "Australia East",
+    "id": "australiaeast",
+    "regionalDisplayName": "(Asia Pacific) Australia East",
+    "type": "Region",
+    "shortName": "aue",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": "australiasoutheast"
+  },
+  {
+    "name": "southeastasia",
+    "displayName": "Southeast Asia",
+    "id": "southeastasia",
+    "regionalDisplayName": "(Asia Pacific) Southeast Asia",
+    "type": "Region",
+    "shortName": "sa",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": "eastasia"
+  },
+  {
+    "name": "northeurope",
+    "displayName": "North Europe",
+    "id": "northeurope",
+    "regionalDisplayName": "(Europe) North Europe",
+    "type": "Region",
+    "shortName": "ne",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": "westeurope"
+  },
+  {
+    "name": "swedencentral",
+    "displayName": "Sweden Central",
+    "id": "swedencentral",
+    "regionalDisplayName": "(Europe) Sweden Central",
+    "type": "Region",
+    "shortName": "sdc",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": "swedensouth"
+  },
+  {
+    "name": "uksouth",
+    "displayName": "UK South",
+    "id": "uksouth",
+    "regionalDisplayName": "(Europe) UK South",
+    "type": "Region",
+    "shortName": "us",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": "ukwest"
+  },
+  {
+    "name": "westeurope",
+    "displayName": "West Europe",
+    "id": "westeurope",
+    "regionalDisplayName": "(Europe) West Europe",
+    "type": "Region",
+    "shortName": "we",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": "northeurope"
+  },
+  {
+    "name": "centralus",
+    "displayName": "Central US",
+    "id": "centralus",
+    "regionalDisplayName": "(US) Central US",
+    "type": "Region",
+    "shortName": "cu",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": "eastus2"
+  },
+  {
+    "name": "southafricanorth",
+    "displayName": "South Africa North",
+    "id": "southafricanorth",
+    "regionalDisplayName": "(Africa) South Africa North",
+    "type": "Region",
+    "shortName": "san",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": "southafricawest"
+  },
+  {
+    "name": "centralindia",
+    "displayName": "Central India",
+    "id": "centralindia",
+    "regionalDisplayName": "(Asia Pacific) Central India",
+    "type": "Region",
+    "shortName": "ci",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": "southindia"
+  },
+  {
+    "name": "eastasia",
+    "displayName": "East Asia",
+    "id": "eastasia",
+    "regionalDisplayName": "(Asia Pacific) East Asia",
+    "type": "Region",
+    "shortName": "ea",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": "southeastasia"
+  },
+  {
+    "name": "indonesiacentral",
+    "displayName": "Indonesia Central",
+    "id": "indonesiacentral",
+    "regionalDisplayName": "(Asia Pacific) Indonesia Central",
+    "type": "Region",
+    "shortName": "ic",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": ""
+  },
+  {
+    "name": "japaneast",
+    "displayName": "Japan East",
+    "id": "japaneast",
+    "regionalDisplayName": "(Asia Pacific) Japan East",
+    "type": "Region",
+    "shortName": "je",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": "japanwest"
+  },
+  {
+    "name": "japanwest",
+    "displayName": "Japan West",
+    "id": "japanwest",
+    "regionalDisplayName": "(Asia Pacific) Japan West",
+    "type": "Region",
+    "shortName": "jw",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": "japaneast"
+  },
+  {
+    "name": "koreacentral",
+    "displayName": "Korea Central",
+    "id": "koreacentral",
+    "regionalDisplayName": "(Asia Pacific) Korea Central",
+    "type": "Region",
+    "shortName": "kc",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": "koreasouth"
+  },
+  {
+    "name": "malaysiawest",
+    "displayName": "Malaysia West",
+    "id": "malaysiawest",
+    "regionalDisplayName": "(Asia Pacific) Malaysia West",
+    "type": "Region",
+    "shortName": "mw",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": ""
+  },
+  {
+    "name": "newzealandnorth",
+    "displayName": "New Zealand North",
+    "id": "newzealandnorth",
+    "regionalDisplayName": "(Asia Pacific) New Zealand North",
+    "type": "Region",
+    "shortName": "nzn",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": ""
+  },
+  {
+    "name": "canadacentral",
+    "displayName": "Canada Central",
+    "id": "canadacentral",
+    "regionalDisplayName": "(Canada) Canada Central",
+    "type": "Region",
+    "shortName": "cc",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": "canadaeast"
+  },
+  {
+    "name": "austriaeast",
+    "displayName": "Austria East",
+    "id": "austriaeast",
+    "regionalDisplayName": "(Europe) Austria East",
+    "type": "Region",
+    "shortName": "ae",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": ""
+  },
+  {
+    "name": "francecentral",
+    "displayName": "France Central",
+    "id": "francecentral",
+    "regionalDisplayName": "(Europe) France Central",
+    "type": "Region",
+    "shortName": "fc",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": "francesouth"
+  },
+  {
+    "name": "germanywestcentral",
+    "displayName": "Germany West Central",
+    "id": "germanywestcentral",
+    "regionalDisplayName": "(Europe) Germany West Central",
+    "type": "Region",
+    "shortName": "gwc",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": "germanynorth"
+  },
+  {
+    "name": "italynorth",
+    "displayName": "Italy North",
+    "id": "italynorth",
+    "regionalDisplayName": "(Europe) Italy North",
+    "type": "Region",
+    "shortName": "in",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": ""
+  },
+  {
+    "name": "norwayeast",
+    "displayName": "Norway East",
+    "id": "norwayeast",
+    "regionalDisplayName": "(Europe) Norway East",
+    "type": "Region",
+    "shortName": "nwe",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": "norwaywest"
+  },
+  {
+    "name": "polandcentral",
+    "displayName": "Poland Central",
+    "id": "polandcentral",
+    "regionalDisplayName": "(Europe) Poland Central",
+    "type": "Region",
+    "shortName": "pc",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": ""
+  },
+  {
+    "name": "spaincentral",
+    "displayName": "Spain Central",
+    "id": "spaincentral",
+    "regionalDisplayName": "(Europe) Spain Central",
+    "type": "Region",
+    "shortName": "sc",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": ""
+  },
+  {
+    "name": "switzerlandnorth",
+    "displayName": "Switzerland North",
+    "id": "switzerlandnorth",
+    "regionalDisplayName": "(Europe) Switzerland North",
+    "type": "Region",
+    "shortName": "sn",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": "switzerlandwest"
+  },
+  {
+    "name": "mexicocentral",
+    "displayName": "Mexico Central",
+    "id": "mexicocentral",
+    "regionalDisplayName": "(Mexico) Mexico Central",
+    "type": "Region",
+    "shortName": "mc",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": ""
+  },
+  {
+    "name": "uaenorth",
+    "displayName": "UAE North",
+    "id": "uaenorth",
+    "regionalDisplayName": "(Middle East) UAE North",
+    "type": "Region",
+    "shortName": "un",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": "uaecentral"
+  },
+  {
+    "name": "brazilsouth",
+    "displayName": "Brazil South",
+    "id": "brazilsouth",
+    "regionalDisplayName": "(South America) Brazil South",
+    "type": "Region",
+    "shortName": "bs",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": "southcentralus"
+  },
+  {
+    "name": "chilecentral",
+    "displayName": "Chile Central",
+    "id": "chilecentral",
+    "regionalDisplayName": "(South America) Chile Central",
+    "type": "Region",
+    "shortName": "clc",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": ""
+  },
+  {
+    "name": "eastus2euap",
+    "displayName": "East US 2 EUAP",
+    "id": "eastus2euap",
+    "regionalDisplayName": "(US) East US 2 EUAP",
+    "type": "Region",
+    "shortName": "eu2e",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": "centraluseuap"
+  },
+  {
+    "name": "qatarcentral",
+    "displayName": "Qatar Central",
+    "id": "qatarcentral",
+    "regionalDisplayName": "(Middle East) Qatar Central",
+    "type": "Region",
+    "shortName": "qc",
+    "regionCategory": "Recommended",
+    "pairedRegionNames": ""
+  },
+  {
+    "name": "brazilus",
+    "displayName": "Brazil US",
+    "id": "brazilus",
+    "regionalDisplayName": "(South America) Brazil US",
+    "type": "Region",
+    "shortName": "bu",
+    "regionCategory": "Other",
+    "pairedRegionNames": "brazilsoutheast"
+  },
+  {
+    "name": "eastus2",
+    "displayName": "East US 2",
+    "id": "eastus2",
+    "regionalDisplayName": "(US) East US 2",
+    "type": "Region",
+    "shortName": "eu2",
+    "regionCategory": "Other",
+    "pairedRegionNames": "centralus"
+  },
+  {
+    "name": "eastusstg",
+    "displayName": "East US STG",
+    "id": "eastusstg",
+    "regionalDisplayName": "(US) East US STG",
+    "type": "Region",
+    "shortName": "eus",
+    "regionCategory": "Other",
+    "pairedRegionNames": "southcentralusstg"
+  },
+  {
+    "name": "southcentralus",
+    "displayName": "South Central US",
+    "id": "southcentralus",
+    "regionalDisplayName": "(US) South Central US",
+    "type": "Region",
+    "shortName": "scu",
+    "regionCategory": "Other",
+    "pairedRegionNames": "northcentralus"
+  },
+  {
+    "name": "westus3",
+    "displayName": "West US 3",
+    "id": "westus3",
+    "regionalDisplayName": "(US) West US 3",
+    "type": "Region",
+    "shortName": "wu3",
+    "regionCategory": "Other",
+    "pairedRegionNames": "eastus"
+  },
+  {
+    "name": "northcentralus",
+    "displayName": "North Central US",
+    "id": "northcentralus",
+    "regionalDisplayName": "(US) North Central US",
+    "type": "Region",
+    "shortName": "ncu",
+    "regionCategory": "Other",
+    "pairedRegionNames": "southcentralus"
+  },
+  {
+    "name": "westus",
+    "displayName": "West US",
+    "id": "westus",
+    "regionalDisplayName": "(US) West US",
+    "type": "Region",
+    "shortName": "wu",
+    "regionCategory": "Other",
+    "pairedRegionNames": "eastus"
+  },
+  {
+    "name": "jioindiawest",
+    "displayName": "Jio India West",
+    "id": "jioindiawest",
+    "regionalDisplayName": "(Asia Pacific) Jio India West",
+    "type": "Region",
+    "shortName": "jiw",
+    "regionCategory": "Other",
+    "pairedRegionNames": "jioindiacentral"
+  },
+  {
+    "name": "centraluseuap",
+    "displayName": "Central US EUAP",
+    "id": "centraluseuap",
+    "regionalDisplayName": "(US) Central US EUAP",
+    "type": "Region",
+    "shortName": "cue",
+    "regionCategory": "Other",
+    "pairedRegionNames": "eastus2euap"
+  },
+  {
+    "name": "southcentralusstg",
+    "displayName": "South Central US STG",
+    "id": "southcentralusstg",
+    "regionalDisplayName": "(US) South Central US STG",
+    "type": "Region",
+    "shortName": "scus",
+    "regionCategory": "Other",
+    "pairedRegionNames": "eastusstg"
+  },
+  {
+    "name": "westcentralus",
+    "displayName": "West Central US",
+    "id": "westcentralus",
+    "regionalDisplayName": "(US) West Central US",
+    "type": "Region",
+    "shortName": "wcu",
+    "regionCategory": "Other",
+    "pairedRegionNames": "westus2"
+  },
+  {
+    "name": "southafricawest",
+    "displayName": "South Africa West",
+    "id": "southafricawest",
+    "regionalDisplayName": "(Africa) South Africa West",
+    "type": "Region",
+    "shortName": "saw",
+    "regionCategory": "Other",
+    "pairedRegionNames": "southafricanorth"
+  },
+  {
+    "name": "australiacentral",
+    "displayName": "Australia Central",
+    "id": "australiacentral",
+    "regionalDisplayName": "(Asia Pacific) Australia Central",
+    "type": "Region",
+    "shortName": "ac",
+    "regionCategory": "Other",
+    "pairedRegionNames": "australiacentral2"
+  },
+  {
+    "name": "australiacentral2",
+    "displayName": "Australia Central 2",
+    "id": "australiacentral2",
+    "regionalDisplayName": "(Asia Pacific) Australia Central 2",
+    "type": "Region",
+    "shortName": "ac2",
+    "regionCategory": "Other",
+    "pairedRegionNames": "australiacentral"
+  },
+  {
+    "name": "australiasoutheast",
+    "displayName": "Australia Southeast",
+    "id": "australiasoutheast",
+    "regionalDisplayName": "(Asia Pacific) Australia Southeast",
+    "type": "Region",
+    "shortName": "as",
+    "regionCategory": "Other",
+    "pairedRegionNames": "australiaeast"
+  },
+  {
+    "name": "jioindiacentral",
+    "displayName": "Jio India Central",
+    "id": "jioindiacentral",
+    "regionalDisplayName": "(Asia Pacific) Jio India Central",
+    "type": "Region",
+    "shortName": "jic",
+    "regionCategory": "Other",
+    "pairedRegionNames": "jioindiawest"
+  },
+  {
+    "name": "koreasouth",
+    "displayName": "Korea South",
+    "id": "koreasouth",
+    "regionalDisplayName": "(Asia Pacific) Korea South",
+    "type": "Region",
+    "shortName": "ks",
+    "regionCategory": "Other",
+    "pairedRegionNames": "koreacentral"
+  },
+  {
+    "name": "southindia",
+    "displayName": "South India",
+    "id": "southindia",
+    "regionalDisplayName": "(Asia Pacific) South India",
+    "type": "Region",
+    "shortName": "si",
+    "regionCategory": "Other",
+    "pairedRegionNames": "centralindia"
+  },
+  {
+    "name": "westindia",
+    "displayName": "West India",
+    "id": "westindia",
+    "regionalDisplayName": "(Asia Pacific) West India",
+    "type": "Region",
+    "shortName": "wi",
+    "regionCategory": "Other",
+    "pairedRegionNames": "southindia"
+  },
+  {
+    "name": "canadaeast",
+    "displayName": "Canada East",
+    "id": "canadaeast",
+    "regionalDisplayName": "(Canada) Canada East",
+    "type": "Region",
+    "shortName": "ce",
+    "regionCategory": "Other",
+    "pairedRegionNames": "canadacentral"
+  },
+  {
+    "name": "francesouth",
+    "displayName": "France South",
+    "id": "francesouth",
+    "regionalDisplayName": "(Europe) France South",
+    "type": "Region",
+    "shortName": "fs",
+    "regionCategory": "Other",
+    "pairedRegionNames": "francecentral"
+  },
+  {
+    "name": "germanynorth",
+    "displayName": "Germany North",
+    "id": "germanynorth",
+    "regionalDisplayName": "(Europe) Germany North",
+    "type": "Region",
+    "shortName": "gn",
+    "regionCategory": "Other",
+    "pairedRegionNames": "germanywestcentral"
+  },
+  {
+    "name": "norwaywest",
+    "displayName": "Norway West",
+    "id": "norwaywest",
+    "regionalDisplayName": "(Europe) Norway West",
+    "type": "Region",
+    "shortName": "nw",
+    "regionCategory": "Other",
+    "pairedRegionNames": "norwayeast"
+  },
+  {
+    "name": "switzerlandwest",
+    "displayName": "Switzerland West",
+    "id": "switzerlandwest",
+    "regionalDisplayName": "(Europe) Switzerland West",
+    "type": "Region",
+    "shortName": "sw",
+    "regionCategory": "Other",
+    "pairedRegionNames": "switzerlandnorth"
+  },
+  {
+    "name": "ukwest",
+    "displayName": "UK West",
+    "id": "ukwest",
+    "regionalDisplayName": "(Europe) UK West",
+    "type": "Region",
+    "shortName": "uw",
+    "regionCategory": "Other",
+    "pairedRegionNames": "uksouth"
+  },
+  {
+    "name": "uaecentral",
+    "displayName": "UAE Central",
+    "id": "uaecentral",
+    "regionalDisplayName": "(Middle East) UAE Central",
+    "type": "Region",
+    "shortName": "uc",
+    "regionCategory": "Other",
+    "pairedRegionNames": "uaenorth"
+  },
+  {
+    "name": "brazilsoutheast",
+    "displayName": "Brazil Southeast",
+    "id": "brazilsoutheast",
+    "regionalDisplayName": "(South America) Brazil Southeast",
+    "type": "Region",
+    "shortName": "bse",
+    "regionCategory": "Other",
+    "pairedRegionNames": "brazilsouth"
+  }
+]

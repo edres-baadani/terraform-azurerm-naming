@@ -1,31 +1,47 @@
 {{- define "resources" -}}
-    {{- .Name }} = {
-      name        = substr(join("{{if .Dashes}}-{{ end }}", compact([local.prefix{{if not .Dashes}}_safe{{ end }}, "{{ .Slug }}", local.suffix{{if not .Dashes}}_safe{{ end }}])), 0, {{ .Length.Max }})
-      name_unique = substr(join("{{if .Dashes}}-{{ end }}", compact([local.prefix{{if not .Dashes}}_safe{{ end }}, "{{ .Slug }}", local.suffix_unique{{if not .Dashes}}_safe{{ end }}])), 0, {{ .Length.Max }})
-      dashes      = {{ .Dashes }}
-      slug        = "{{ .Slug }}"
-      min_length  = {{ .Length.Min }}
-      max_length  = {{ .Length.Max }}
-      scope       = "{{ .Scope }}"
-      regex       = "{{ cleanRegex .Regex }}"
-    }
+  {{- .Name }} = {
+    name        = substr(join("{{if .Dashes}}-{{ end }}", compact([local.prefix{{if not .Dashes}}_safe{{ end }}, "{{ .Slug }}", local.suffix{{if not .Dashes}}_safe{{ end }}])), 0, {{ .Length.Max }})
+    name_unique = substr(join("{{if .Dashes}}-{{ end }}", compact([local.prefix{{if not .Dashes}}_safe{{ end }}, "{{ .Slug }}", local.suffix_unique{{if not .Dashes}}_safe{{ end }}])), 0, {{ .Length.Max }})
+    dashes      = {{ .Dashes }}
+    slug        = "{{ .Slug }}"
+    min_length  = {{ .Length.Min }}
+    max_length  = {{ .Length.Max }}
+    scope       = "{{ .Scope }}"
+    regex       = "{{ cleanRegex .Regex }}"
+  }
 {{- end -}}
 
 {{- define "validation" -}}
-    {{- .Name }} = {
-      valid_name        = length(regexall(local.az.{{- .Name }}.regex, local.az.{{- .Name }}.name)) > 0 && length(local.az.{{- .Name }}.name) > local.az.{{- .Name }}.min_length
-      valid_name_unique = length(regexall(local.az.{{- .Name }}.regex, local.az.{{- .Name }}.name_unique)) > 0
-    }
+  {{- .Name }} = {
+    valid_name        = length(regexall(local.az.{{- .Name }}.regex, local.az.{{- .Name }}.name)) > 0 && length(local.az.{{- .Name }}.name) > local.az.{{- .Name }}.min_length
+    valid_name_unique = length(regexall(local.az.{{- .Name }}.regex, local.az.{{- .Name }}.name_unique)) > 0
+  }
 {{- end -}}
 
+{{- define "environments" -}}
+  {{ .ShortName }} = {
+    name       = "{{ .Name }}"
+    short_name = "{{ .ShortName }}"
+  }
+{{- end -}}
 
+{{- define "locations" -}}
+  {{ .Name }} = {
+    name       = "{{ .Name }}"
+    displayName       = "{{ .DisplayName }}"
+    short_name = "{{ .ShortName }}"
+    region_category = "{{ .RegionCategory }}"
+    paired_regions = "{{ .PairedRegionNames }}"
+  }
+{{- end -}}
 
 {{- define "main" -}}
 terraform {
+  required_version = ">= 1.5.0"
   required_providers {
     random = {
       source  = "hashicorp/random"
-      version = ">= 3.3.2"
+      version = "3.7.2" # ">= 3.3.2"
     }
   }
 }
@@ -44,29 +60,62 @@ resource "random_string" "first_letter" {
   numeric = false
 }
 
-
-
 locals {
   // adding a first letter to guarantee that you always start with a letter
   random_safe_generation = join("", [random_string.first_letter.result, random_string.main.result])
-  random                 = substr(coalesce(var.unique-seed, local.random_safe_generation), 0, var.unique-length)
-  prefix                 = join("-", var.prefix)
-  prefix_safe            = lower(join("", var.prefix))
-  suffix                 = join("-", var.suffix)
-  suffix_unique          = join("-", concat(var.suffix, [local.random]))
-  suffix_safe            = lower(join("", var.suffix))
-  suffix_unique_safe     = lower(join("", concat(var.suffix, [local.random])))
-  // Names based in the recomendations of
+  random               = substr(coalesce(var.unique-seed, local.random_safe_generation), 0, var.unique-length)
+  prefix               = join("-", var.prefix)
+  prefix_safe          = lower(join("", var.prefix))
+
+  // Add the environment variable to the prefix if it's not empty
+  suffix_items = compact(concat(var.suffix, [var.environment]))
+  suffix = join("-", local.suffix_items)
+  suffix_unique        = join("-", concat(local.suffix_items, [local.random]))
+  suffix_safe = lower(join("", local.suffix_items))
+  suffix_unique_safe   = lower(join("", concat(local.suffix_items, [local.random])))
+
+  //suffix               = join("-", var.suffix)
+  //suffix_unique        = join("-", concat(var.suffix, [local.random]))
+  //suffix_safe          = lower(join("", var.suffix))
+  //suffix_unique_safe   = lower(join("", concat(var.suffix, [local.random])))
+
+  // Naming recommendations from Azure Cloud Adoption Framework
   // https://docs.microsoft.com/en-us/azure/cloud-adoption-framework/ready/azure-best-practices/naming-and-tagging
   az = {
-    {{- range . }}
+    {{- range .Resources }}
     {{ template  "resources" .}}
     {{- end }}
   }
   validation = {
-    {{- range . }}
+    {{- range .Resources }}
     {{ template  "validation" .}}
     {{- end }}
   }
-}
+  
+  // Naming components from resourceenvironments.json
+  environments = {
+    {{- range .Environments }}
+    {{ template  "environments" .}}
+    {{- end }}
+  }
+
+  // Raw locations data keyed by name
+  locations_by_name = {
+    {{- range .Locations }}
+    {{ template  "locations" .}}
+    {{- end }}
+  }
+
+  // Lookups keyed by short name and display name
+  locations_by_short_name = {
+    for location in local.locations_by_name : location.short_name => location
+  }
+
+  // A combined lookup value for user input
+  location = try(coalesce(
+    lookup(local.locations_by_short_name, var.location, null),
+    lookup(local.locations_by_name, var.location, null)
+  ), null)
+
+} // THIS IS THE MISSING BRACE
 {{ end }}
